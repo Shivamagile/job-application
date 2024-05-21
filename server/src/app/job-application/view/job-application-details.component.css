@@ -1,0 +1,73 @@
+.view-details-card {
+    margin-top: 20px;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 10px;
+  }
+  
+  .grid-item {
+    padding: 10px;
+  }
+  
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    background-color: transparent;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+  }
+
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #dee2e6;
+  }
+
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .table thead th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+
+  .table th {
+    text-align: left;
+  }
+
+  .table-container {
+    margin-top: 20px;
+  }
+
+  .section-title {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-bottom: 2px solid #007bff;
+    color: #007bff;
+    padding-bottom: 10px;
+  }

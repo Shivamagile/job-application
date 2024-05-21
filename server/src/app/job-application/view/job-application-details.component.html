@@ -1,0 +1,121 @@
+<div *ngIf="jobApplication" class="table-container">
+  <h2 class="section-title">Job Application Details</h2>
+  <table class="table table-bordered">
+    <tr>
+      <th>Name</th>
+      <td>{{ jobApplication.name }}</td>
+    </tr>
+    <tr>
+      <th>Contact Number</th>
+      <td>{{ jobApplication.contact }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ jobApplication.email }}</td>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <td>{{ jobApplication.gender }}</td>
+    </tr>
+    <tr>
+      <th>Preferred Location</th>
+      <td>{{ jobApplication.preferredLocation }}</td>
+    </tr>
+    <tr>
+      <th>Expected CTC</th>
+      <td>{{ jobApplication.expectedCTC }}</td>
+    </tr>
+    <tr>
+      <th>Current CTC</th>
+      <td>{{ jobApplication.currentCTC }}</td>
+    </tr>
+    <tr>
+      <th>Notice Period</th>
+      <td>{{ jobApplication.noticePeriod }}</td>
+    </tr>
+  </table>
+
+  <div *ngIf="jobApplication.educationDetails?.length">
+    <h3 class="section-title">Education Details</h3>
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Degree</th>
+          <th>Board/University</th>
+          <th>Year</th>
+          <th>CGPA/Percentage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let education of jobApplication.educationDetails">
+          <td>{{ education.degree }}</td>
+          <td>{{ education.boardUniversity }}</td>
+          <td>{{ education.year }}</td>
+          <td>{{ education.cgpaPercentage }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="jobApplication.workExperience?.length">
+    <h3 class="section-title">Work Experience</h3>
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Designation</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let work of jobApplication.workExperience">
+          <td>{{ work.company }}</td>
+          <td>{{ work.designation }}</td>
+          <td>{{ work.from | date: 'shortDate' }}</td>
+          <td>{{ work.to | date: 'shortDate' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="jobApplication.knownLanguages?.length">
+    <h3 class="section-title">Known Languages</h3>
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Language</th>
+          <th>Read</th>
+          <th>Write</th>
+          <th>Speak</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let language of jobApplication.knownLanguages">
+          <td>{{ language.language }}</td>
+          <td>{{ language.read ? 'Yes' : 'No' }}</td>
+          <td>{{ language.write ? 'Yes' : 'No' }}</td>
+          <td>{{ language.speak ? 'Yes' : 'No' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="jobApplication.technicalExperience?.length">
+    <h3 class="section-title">Technical Experience</h3>
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Technology</th>
+          <th>Experience Level</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tech of jobApplication.technicalExperience">
+          <td>{{ tech.technology }}</td>
+          <td>{{ tech.level }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

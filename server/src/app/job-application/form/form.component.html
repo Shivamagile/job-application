@@ -1,0 +1,294 @@
+<div class="job-application-form" style="margin-top: 35px">
+  <h2 style="text-align: center">Form</h2>
+
+  <form [formGroup]="jobApplicationForm">
+    <div>
+      <div class="form-group">
+        <label class="label" for="name">Name:</label>
+        <input class="form-control" class="form-control" id="name" formControlName="name" />
+        <div *ngIf="
+            jobApplicationForm.get('name').touched &&
+            jobApplicationForm.get('name').invalid
+          ">
+          <small *ngIf="jobApplicationForm.get('name').errors.required">Name is required.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label" for="email">Email:</label>
+        <input class="form-control" id="email" formControlName="email" />
+        <div *ngIf="
+            jobApplicationForm.get('email').touched &&
+            jobApplicationForm.get('email').invalid
+          ">
+          <small *ngIf="jobApplicationForm.get('email').errors.required">Email is required.</small>
+          <small *ngIf="jobApplicationForm.get('email').errors.email">Enter a valid email.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label" for="address">Address:</label>
+        <input class="form-control" id="address" formControlName="address" />
+        <div *ngIf="
+            jobApplicationForm.get('address').touched &&
+            jobApplicationForm.get('address').invalid
+          ">
+          <small *ngIf="
+              jobApplicationForm.get('address').errors.required
+            ">Address is required.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label" for="gender">Gender:</label>
+        <select class="form-control" id="gender" formControlName="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <div *ngIf="
+            jobApplicationForm.get('gender').touched &&
+            jobApplicationForm.get('gender').invalid
+          ">
+          <small *ngIf="
+              jobApplicationForm.get('gender').errors.required
+            ">Gender is required.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label" for="contact">Contact:</label>
+        <input type="number" class="form-control" id="contact" formControlName="contact" />
+        <div *ngIf="
+            jobApplicationForm.get('contact').touched &&
+            jobApplicationForm.get('contact').invalid
+          ">
+          <small *ngIf="
+              jobApplicationForm.get('contact').errors.required
+            ">Contact is required.</small>
+          <small *ngIf="
+              jobApplicationForm.get('contact').errors.pattern
+            ">Enter a valid contact number.</small>
+        </div>
+      </div>
+    </div>
+
+    <div formArrayName="educationDetails">
+      <div *ngFor="
+          let education of jobApplicationForm.get('educationDetails')[
+            'controls'
+          ];
+          let i = index
+        " [formGroupName]="i">
+        <div class="form-group">
+          <label class="label" for="degree">Degree:</label>
+          <input class="form-control" id="degree" formControlName="degree" />
+          <div *ngIf="
+              education.get('degree').touched &&
+              education.get('degree').invalid
+            ">
+            <small *ngIf="education.get('degree').errors.required">Board/University is required.</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="label" for="boardUniversity">Board/University:</label>
+          <input class="form-control" id="boardUniversity" formControlName="boardUniversity" />
+          <div *ngIf="
+              education.get('boardUniversity').touched &&
+              education.get('boardUniversity').invalid
+            ">
+            <small *ngIf="education.get('boardUniversity').errors.required">Board/University is required.</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="label" for="year">Year:</label>
+          <input type="number" class="form-control" id="year" formControlName="year" />
+          <div *ngIf="
+              education.get('year').touched && education.get('year').invalid
+            ">
+            <small *ngIf="education.get('year').errors.required">Year is required.</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="label" for="cgpaPercentage">CGPA/Percentage:</label>
+          <input class="form-control" id="cgpaPercentage" formControlName="cgpaPercentage" />
+          <div *ngIf="
+              education.get('cgpaPercentage').touched &&
+              education.get('cgpaPercentage').invalid
+            ">
+            <small *ngIf="education.get('cgpaPercentage').errors.required">CGPA/Percentage is required.</small>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-light" type="button" (click)="addEducation()">
+        Add Education
+      </button>
+    </div>
+
+    <div formArrayName="workExperience">
+      <div *ngFor="
+          let experience of jobApplicationForm.get('workExperience')[
+            'controls'
+          ];
+          let i = index
+        " [formGroupName]="i">
+        <div class="form-group">
+          <label class="label" for="company">Company:</label>
+          <input class="form-control" id="company" formControlName="company" />
+          <div *ngIf="
+              experience.get('company').touched &&
+              experience.get('company').invalid
+            ">
+            <small *ngIf="experience.get('company').errors.required">Company is required.</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="label" for="designation">Designation:</label>
+          <input class="form-control" id="designation" formControlName="designation" />
+          <div *ngIf="
+              experience.get('designation').touched &&
+              experience.get('designation').invalid
+            ">
+            <small *ngIf="experience.get('designation').errors.required">Designation is required.</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="label" for="from">From:</label>
+          <input class="form-control" id="from" type="date" formControlName="from" />
+          <div *ngIf="
+              experience.get('from').touched && experience.get('from').invalid
+            ">
+            <small *ngIf="experience.get('from').errors.required">From date is required.</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="label" for="to">To:</label>
+          <input class="form-control" id="to" type="date" formControlName="to" />
+          <div *ngIf="experience.get('to').touched && experience.get('to').invalid">
+            <small *ngIf="experience.get('to').errors.required">To date is required.</small>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-light" type="button" (click)="addWorkExperience()">
+        Add Work Experience
+      </button>
+    </div>
+
+    <div formArrayName="knownLanguages">
+      <div *ngFor="
+          let language of jobApplicationForm.get('knownLanguages')['controls'];
+          let i = index
+        " [formGroupName]="i" style="display: flex; width: 100%; gap: 72px">
+        <div class="form-group" style="display: flex; gap: 10px; align-items: center">
+          <input id="language{{ i }}" type="checkbox" formControlName="language" (change)="onLanguageChange(i)"
+            style="margin-top: -8px" />
+          <label class="label" for="language{{ i }}">{{
+            language.value?.language_name
+            }}</label>
+        </div>
+        <div class="form-group" style="display: flex; gap: 10px; align-items: center">
+          <input id="read{{ i }}" type="checkbox" style="margin-top: -8px" formControlName="read" />
+          <label class="label" for="read{{ i }}">Read</label>
+        </div>
+        <div class="form-group" style="display: flex; gap: 10px; align-items: center">
+          <input id="write{{ i }}" type="checkbox" style="margin-top: -8px" formControlName="write" />
+          <label class="label" for="write{{ i }}">Write</label>
+        </div>
+        <div class="form-group" style="display: flex; gap: 10px; align-items: center">
+          <input id="speak{{ i }}" type="checkbox" style="margin-top: -8px" formControlName="speak" />
+          <label class="label" for="speak{{ i }}">Speak</label>
+        </div>
+      </div>
+    </div>
+
+    <div formArrayName="technicalExperience">
+      <div *ngFor="
+          let tech of jobApplicationForm.get('technicalExperience')['controls'];
+          let i = index
+        " [formGroupName]="i" style="display: flex; gap: 15px; align-items: center">
+        <div class="form-group">
+          <input class="form-control" id="technology{{ i }}" formControlName="technology"
+            (change)="onTechnologyChange(i)" placeholder="Technology" />
+          <div *ngIf="
+              tech.get('technology').touched && tech.get('technology').invalid
+            ">
+            <small *ngIf="tech.get('technology').errors.required">Technology is required.</small>
+          </div>
+        </div>
+        <div class="form-group" style="display: flex; align-items: center">
+          <label class="label" for="Beginner{{ i }}">Beginner:</label>
+          <input type="radio" name="level" id="Beginner{{ i }}" value="Beginner" formControlName="level"
+            style="margin-top: -6px" />
+        </div>
+        <div class="form-group" style="display: flex; align-items: center">
+          <label class="label" for="Mediator{{ i }}">Mediator:</label>
+          <input type="radio" name="level" id="Mediator{{ i }}" value="Mediator" formControlName="level"
+            style="margin-top: -6px" />
+        </div>
+        <div class="form-group" style="display: flex; align-items: center">
+          <label class="label" for="Expert{{ i }}">Expert:</label>
+          <input type="radio" name="level" id="Expert{{ i }}" value="Expert" formControlName="level"
+            style="margin-top: -6px" />
+        </div>
+      </div>
+      <button class="btn btn-light" type="button" (click)="addTechnicalExperience()">
+        Add Technical Experience
+      </button>
+    </div>
+
+    <div>
+      <div class="form-group">
+        <label class="label" for="preferredLocation">Preferred Location:</label>
+        <select class="form-control" id="preferredLocation" formControlName="preferredLocation">
+          <option value="Mumbai">Mumbai</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Ahmedabad">Ahmedabad</option>
+          <option value="Bangalore">Bangalore</option>
+        </select>
+        <div *ngIf="
+            jobApplicationForm.get('preferredLocation').touched &&
+            jobApplicationForm.get('preferredLocation').invalid
+          ">
+          <small *ngIf="
+              jobApplicationForm.get('preferredLocation').errors
+                .required
+            ">Preferred location is required.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label" for="expectedCTC">Expected CTC:</label>
+        <input type="number" class="form-control" id="expectedCTC" formControlName="expectedCTC" />
+        <div *ngIf="
+            jobApplicationForm.get('expectedCTC').touched &&
+            jobApplicationForm.get('expectedCTC').invalid
+          ">
+          <small *ngIf="
+              jobApplicationForm.get('expectedCTC').errors.required
+            ">Expected CTC is required.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label" for="currentCTC">Current CTC:</label>
+        <input type="number" class="form-control" id="currentCTC" formControlName="currentCTC" />
+        <div *ngIf="
+            jobApplicationForm.get('currentCTC').touched &&
+            jobApplicationForm.get('currentCTC').invalid
+          ">
+          <small *ngIf="
+              jobApplicationForm.get('currentCTC').errors.required
+            ">Current CTC is required.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label" for="noticePeriod">Notice Period:</label>
+        <input type="number" class="form-control" id="noticePeriod" formControlName="noticePeriod" />
+        <div *ngIf="
+            jobApplicationForm.get('noticePeriod').touched &&
+            jobApplicationForm.get('noticePeriod').invalid
+          ">
+          <small *ngIf="
+              jobApplicationForm.get('noticePeriod').errors
+                .required
+            ">Notice period is required.</small>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit" *ngIf="!isEdit" (click)="onSubmit()">Submit</button>
+    <button class="btn btn-primary" type="submit" *ngIf="isEdit" (click)="onUpdate()">Update</button>
+  </form>
+</div>

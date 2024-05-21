@@ -1,0 +1,12 @@
+.container {
+    margin-top: 50px;
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-block {
+    margin-top: 20px;
+  }
+  
